@@ -1,0 +1,19 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:width="58dp"
+        android:height="58dp">
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/profile_bg" />
+    </item>
+
+
+    <item
+        android:width="30dp"
+        android:height="30dp"
+        android:gravity="center"
+        android:drawable="@drawable/ic_round_perm_identity_24" />
+
+</layer-list>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data class="PlanCellBinding">
+
+        <variable
+            name="planVO"
+            type="com.netfix.models.network.dataModel.PlanVO" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/planContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility= "visible"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="3dp"
+            app:cardMaxElevation="5dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            bind:layout_constraintBottom_toBottomOf="parent"
+            bind:layout_constraintEnd_toEndOf="parent"
+            bind:layout_constraintHorizontal_bias="0.5"
+            bind:layout_constraintStart_toStartOf="parent"
+            bind:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/box_a"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_light"
+                    android:padding="10dp"
+                    android:text="@{planVO.planName}"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_light"
+                    android:padding="10dp"
+                    android:text='@{"Speed : "+planVO.planKeyPoints}'
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_light"
+                    android:padding="10dp"
+                    android:text='@{"Validity : "+planVO.planDuration}'
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_light"
+                    android:padding="10dp"
+                    android:text='@{"MRP : \u20B9 "+String.valueOf(planVO.planAmount) +" incl tax *"}'
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_light"
+                    android:padding="10dp"
+                    android:text='@{planVO.planDescription}'
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+                <!--         <include
+                             layout="@layout/key_value_layout"
+                             bind:key='@{"Plan Code"}'
+                             bind:value="@{planVO.planCode}"
+
+                         <include
+                             layout="@layout/key_value_layout"
+                             bind:key='@{"Plan Name"}'
+                             bind:value="@{planVO.planName}" />
+                               <include
+                             layout="@layout/key_value_layout"
+                             bind:key='@{"Plan Description"}'
+                             bind:value="@{planVO.planDescription}" />
+
+                         <include
+                             layout="@layout/key_value_layout"
+                             bind:key='@{"Key Points"}'
+                             bind:value="@{planVO.planKeyPoints}" />
+                         <include
+                             layout="@layout/key_value_layout"
+                             bind:key='@{"Duration"}'
+                             bind:value="@{planVO.planDuration}" />
+
+                               <include
+                    layout="@layout/key_value_layout"
+                    bind:key='@{"Amount"}'
+                    bind:value="@{String.valueOf(planVO.planAmount)}" />
+                      <include
+                    layout="@layout/key_value_layout"
+                    bind:key='@{"Tax Included"}'
+                    bind:value="@{String.valueOf(planVO.includingTax)}" />
+
+                <include
+                    layout="@layout/key_value_layout"
+                    bind:key='@{"Is Active"}'
+                    bind:value="@{String.valueOf(planVO.active)}" />
+                              />-->
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="AddComplaintBinding">
+
+        <variable
+            name="complaintVO"
+            type="com.netfix.models.network.dataModel.ComplaintVO" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/box_a">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilUserList"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="32dp"
+            android:hint="@string/user"
+            android:maxWidth="@dimen/custom_max_width"
+            android:minWidth="@dimen/custom_min_width"
+            app:layout_constraintBottom_toTopOf="@+id/ilComplaintSubject"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/headerText"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <AutoCompleteTextView
+                android:id="@+id/selectUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilComplaintSubject"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="32dp"
+            android:hint="@string/subject"
+            android:maxWidth="@dimen/custom_max_width"
+            android:minWidth="@dimen/custom_min_width"
+            app:layout_constraintBottom_toTopOf="@+id/ilComplaintDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ilUserList"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <AutoCompleteTextView
+                android:id="@+id/complaintSubject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={complaintVO.subject}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilComplaintDescription"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="140dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/desc"
+            android:maxWidth="@dimen/custom_max_width"
+            android:minWidth="@dimen/custom_min_width"
+            app:layout_constraintBottom_toTopOf="@+id/submitComplaint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ilComplaintSubject">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/complaintDescription"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@={complaintVO.subject}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/submitComplaint"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/submit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/ilComplaintDescription"
+            app:layout_constraintTop_toBottomOf="@+id/ilComplaintDescription" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:backgroundTint="@color/red"
+            android:text="@string/cancel"
+            app:layout_constraintBottom_toBottomOf="@+id/submitComplaint"
+            app:layout_constraintEnd_toStartOf="@+id/submitComplaint"
+            app:layout_constraintTop_toTopOf="@+id/submitComplaint" />
+
+        <include layout="@layout/overlay" />
+
+        <TextView
+            android:id="@+id/headerText"
+            style="@style/alertHeader"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:background="@color/purple_500"
+            android:gravity="center"
+            android:text="@string/newComplaint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

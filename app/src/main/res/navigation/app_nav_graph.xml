@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.netfix.ui.main.SplashFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_dashboardActivity"
+            app:destination="@id/dashboardActivity" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.netfix.ui.login.LoginFragment"
+        android:label="LoginFragment" >
+       <!-- <action
+            android:id="@+id/action_loginFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />-->
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_newConnectionFragment"
+            app:destination="@id/newConnectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.netfix.ui.signup.SignUpFragment"
+        android:label="SignUpFragment" />
+    <fragment
+        android:id="@+id/newConnectionFragment"
+        android:name="com.netfix.ui.connection.NewConnectionFragment"
+        android:label="NewConnectionFragment" />
+    <activity
+        android:id="@+id/dashboardActivity"
+        android:name="com.netfix.ui.dashboard.DashboardActivity"
+        android:label="DashboardActivity" >
+        <argument
+            android:name="ticketId"
+            app:argType="string"
+            android:defaultValue=" " />
+    </activity>
+    <!--<fragment
+        android:id="@+id/serviceFragment"
+        android:name="com.netfix.ui.service.ServiceFragment"
+        android:label="DashboardFragment" >
+        <action
+            android:id="@+id/action_serviceFragment_to_addServiceDialogFragment"
+            app:destination="@id/addServiceDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addServiceDialogFragment"
+        android:name="com.netfix.ui.service.AddServiceDialogFragment"
+        android:label="AddServiceDialogFragment" />
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.netfix.ui.dashboard.DashboardFragment"
+        android:label="DashboardFragment" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_serviceFragment"
+            app:destination="@id/serviceFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_planFragment"
+            app:destination="@id/planFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_complaintFragment"
+            app:destination="@id/complaintFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_addAlertFragment"
+            app:destination="@id/addAlertFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/planFragment"
+        android:name="com.netfix.ui.plans.PlanFragment"
+        android:label="PlanFragment" >
+        <action
+            android:id="@+id/action_planFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/complaintFragment"
+        android:name="com.netfix.ui.complaint.ComplaintFragment"
+        android:label="ComplaintFragment" >
+        <action
+            android:id="@+id/action_complaintFragment_to_complaintDetailFragment"
+            app:destination="@id/complaintDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/complaintDetailFragment"
+        android:name="com.netfix.ui.complaint.ComplaintDetailFragment"
+        android:label="ComplaintDetailFragment" >
+        <argument
+            android:name="ticketId"
+            app:argType="string"
+            android:defaultValue=" " />
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.netfix.ui.payment.PaymentFragment"
+        android:label="PaymentFragment" >
+        <argument
+            android:name="userPlanVO"
+            app:argType="com.netfix.models.network.dataModel.PlanVO" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.netfix.ui.profile.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/addAlertFragment"
+        android:name="com.netfix.ui.alert.AddAlertFragment"
+        android:label="AddAlertFragment" />-->
+
+</navigation>

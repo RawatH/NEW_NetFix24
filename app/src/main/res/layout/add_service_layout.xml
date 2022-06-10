@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="AddServiceBinding">
+
+        <variable
+            name="serviceVO"
+            type="com.netfix.models.network.dataModel.ServiceVO" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="mode"
+            type="Integer" />
+
+        <import type="android.view.View" />
+        <import type="com.netfix.ui.service.AddServiceDialogFragment.ALERTMODE"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/box_a"
+        >
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilServiceCode"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/serviceCode"
+            android:maxWidth="@dimen/custom_max_width"
+            android:minWidth="@dimen/custom_min_width"
+            app:layout_constraintBottom_toTopOf="@+id/ilServiceName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/serviceCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={serviceVO.serviceCode}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilServiceName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/serviceName"
+            android:maxWidth="@dimen/custom_max_width"
+            android:minWidth="@dimen/custom_min_width"
+            app:layout_constraintBottom_toTopOf="@+id/ilServiceDesc"
+            app:layout_constraintEnd_toEndOf="@+id/ilServiceCode"
+            app:layout_constraintStart_toStartOf="@+id/ilServiceCode"
+            app:layout_constraintTop_toBottomOf="@+id/ilServiceCode">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/serviceName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={serviceVO.serviceName}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilServiceDesc"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/serviceDesc"
+            android:maxWidth="@dimen/custom_max_width"
+            android:minWidth="@dimen/custom_min_width"
+            app:layout_constraintBottom_toTopOf="@+id/isActive"
+            app:layout_constraintEnd_toEndOf="@+id/ilServiceName"
+            app:layout_constraintStart_toStartOf="@+id/ilServiceName"
+            app:layout_constraintTop_toBottomOf="@+id/ilServiceName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/serviceDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={serviceVO.serviceDescription}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/isActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:checked="@={serviceVO.active}"
+            android:button="@null"
+            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+            android:text="@string/isActive"
+            app:layout_constraintBottom_toTopOf="@+id/serviceAction"
+            app:layout_constraintEnd_toEndOf="@+id/ilServiceDesc"
+            app:layout_constraintTop_toBottomOf="@+id/ilServiceDesc" />
+
+        <Button
+            android:id="@+id/serviceAction"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/ilServiceDesc"
+            app:layout_constraintTop_toBottomOf="@+id/isActive"
+            app:mode="@{mode}" />
+
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            android:text="@string/cancel"
+            app:layout_constraintBaseline_toBaselineOf="@+id/serviceAction"
+            app:layout_constraintEnd_toStartOf="@+id/serviceAction"
+            app:layout_constraintStart_toStartOf="@+id/ilServiceDesc" />
+
+
+        <include layout="@layout/overlay" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:background="@color/purple_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/headerText"
+                style="@style/alertHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{title}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/editAction"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="16dp"
+                app:mode="@{mode}"
+                app:layout_constraintBottom_toBottomOf="@+id/headerText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/headerText"
+                app:srcCompat="@drawable/ic_edit" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav_graph"
+    app:startDestination="@id/navHome">
+
+    <fragment
+        android:id="@+id/serviceFragment"
+        android:name="com.netfix.ui.service.ServiceFragment"
+        android:label="DashboardFragment" >
+        <action
+            android:id="@+id/action_serviceFragment_to_addServiceDialogFragment"
+            app:destination="@id/addServiceDialogFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addServiceDialogFragment"
+        android:name="com.netfix.ui.service.AddServiceDialogFragment"
+        android:label="AddServiceDialogFragment" />
+
+    <fragment
+        android:id="@+id/navHome"
+        android:name="com.netfix.ui.dashboard.DashboardFragment"
+        android:label="DashboardFragment" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_serviceFragment"
+            app:destination="@id/serviceFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_planFragment"
+            app:destination="@id/planFragment" />
+
+        <action
+            android:id="@+id/action_dashboardFragment_to_addAlertFragment"
+            app:destination="@id/addAlertFragment" />
+        <action
+            android:id="@+id/action_navHome_to_customerFragment"
+            app:destination="@id/customerFragment" />
+        <action
+            android:id="@+id/action_navHome_to_feedbackFragment"
+            app:destination="@id/feedbackFragment" />
+        <action
+            android:id="@+id/action_navHome_to_connectionFragment"
+            app:destination="@id/connectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/planFragment"
+        android:name="com.netfix.ui.plans.PlanFragment"
+        android:label="PlanFragment" >
+        <action
+            android:id="@+id/action_planFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navHelp"
+        android:name="com.netfix.ui.complaint.ComplaintFragment"
+        android:label="ComplaintFragment" >
+        <action
+            android:id="@+id/action_complaintFragment_to_complaintDetailFragment"
+            app:destination="@id/complaintDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/complaintDetailFragment"
+        android:name="com.netfix.ui.complaint.ComplaintDetailFragment"
+        android:label="ComplaintDetailFragment" >
+        <argument
+            android:name="ticketId"
+            app:argType="string"
+            android:defaultValue=" " />
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.netfix.ui.payment.PaymentFragment"
+        android:label="PaymentFragment" >
+        <argument
+            android:name="userPlanVO"
+            app:argType="com.netfix.models.network.dataModel.PlanVO" />
+    </fragment>
+    <fragment
+        android:id="@+id/navProfile"
+        android:name="com.netfix.ui.profile.ProfileFragment"
+        android:label="ProfileFragment" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/addAlertFragment"
+        android:name="com.netfix.ui.alert.AddAlertFragment"
+        android:label="AddAlertFragment" />
+    <fragment
+        android:id="@+id/signUpFragment2"
+        android:name="com.netfix.ui.signup.SignUpFragment"
+        android:label="SignUpFragment" />
+    <fragment
+        android:id="@+id/customerFragment"
+        android:name="com.netfix.ui.customer.CustomerFragment"
+        android:label="CustomerFragment" >
+        <action
+            android:id="@+id/action_customerFragment_to_signUpFragment2"
+            app:destination="@id/signUpFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/feedbackFragment"
+        android:name="com.netfix.ui.feedback.FeedbackFragment"
+        android:label="FeedbackFragment" />
+    <fragment
+        android:id="@+id/connectionFragment"
+        android:name="com.netfix.ui.connection.ConnectionFragment"
+        android:label="ConnectionFragment" />
+    <fragment
+        android:id="@+id/navContact"
+        android:name="com.netfix.ui.contact.ContactFragment"
+        android:label="ContactFragment" />
+
+
+</navigation>

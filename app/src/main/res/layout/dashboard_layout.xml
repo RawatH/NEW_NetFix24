@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/theme_bg"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".9">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <FrameLayout
+                    android:id="@+id/notificationBell"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="16dp"
+                    android:visibility="gone"
+                    android:background="@drawable/notification_bg"
+                    app:layout_constraintBottom_toBottomOf="@+id/welcomeMsg"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toEndOf="@+id/welcomeMsg"
+                    app:layout_constraintTop_toTopOf="@+id/welcomeMsg">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        app:tint="@color/bell_color"
+                        bind:srcCompat="@drawable/ic_baseline_notifications_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|left"
+                        android:textStyle="bold"
+                        android:textColor="@color/purple_500"
+                        android:layout_margin="5dp"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:singleLine="true"
+                        android:text="@{String.valueOf(count)}" />
+
+
+                </FrameLayout>
+
+
+                <TextView
+                    android:id="@+id/welcomeMsg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="26dp"
+                    android:fontFamily="@font/opensans_light"
+                    android:text="@{String.format(@string/welcomeStr, userResponseModel.fullName)}"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/userPlanDetail"
+                    app:layout_constraintEnd_toStartOf="@+id/notificationBell"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/userPlanDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:cardElevation="5dp"
+                    app:layout_constraintBottom_toTopOf="@+id/complaintDetail"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/welcomeMsg">
+
+                    <LinearLayout
+                        android:visibility="@{userResponseModel.ID_UserType == AppConst.INSTANCE.USER_TYPE_CUSTOMER ? View.VISIBLE  :View.GONE}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:gravity="center"
+                            android:text="@{userPlanVO.planName}"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".5"
+                                android:gravity="center|left"
+                                android:text="Registration Date"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".5"
+                                android:gravity="center|right"
+                                android:text="@{userPlanVO.registrationDate}"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".5"
+                                android:gravity="center|left"
+                                android:text="Renewal Date"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".5"
+                                android:gravity="center|right"
+                                android:text="@{userPlanVO.planRenewalDate}"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".5"
+                                android:gravity="center|left"
+                                android:text="Expiry Date"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".5"
+                                android:gravity="center|right"
+                                android:text="@{userPlanVO.planExpiryDate}"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".5"
+                                android:gravity="center|left"
+                                android:text="Plan Amount"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".5"
+                                android:gravity="center|right"
+                                android:text='@{"\u20B9 " +String.valueOf(userPlanVO.paymentAmount)}'
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center">
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/planStaus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/planStatus"
+                                android:textColor="@color/white"
+                                app:chipBackgroundColor="@color/purple_500"
+                                app:chipIconTint="@color/white"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/instantRecharge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/instantRecharge"
+                                android:textColor="@color/white"
+                                app:chipBackgroundColor="@color/purple_500"
+                                app:chipIconTint="@color/white"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                 <androidx.cardview.widget.CardView
+                     android:id="@+id/complaintDetail"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_margin="10dp"
+                     android:background="@drawable/box_a"
+                     android:visibility="@{userResponseModel.ID_UserType == AppConst.INSTANCE.USER_TYPE_CUSTOMER &amp;&amp; viewModel.currentComplaintVO != null ? View.VISIBLE : View.GONE }"
+                     app:cardElevation="5dp"
+                     app:layout_constraintBottom_toTopOf="@+id/chipOptionGroup"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintHorizontal_bias="0.5"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toBottomOf="@+id/userPlanDetail">
+
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="200dp"
+                         android:background="@drawable/box_a"
+                         android:gravity="center"
+                         android:orientation="vertical"
+                         android:paddingStart="10dp"
+                         android:paddingEnd="10dp">
+
+
+                         <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:text="@{viewModel.currentComplaintVO.ticketID}"
+                             android:textColor="@color/black"
+                             android:textSize="18sp"
+                             android:textStyle="bold" />
+
+                         <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginTop="10dp"
+                             android:layout_marginBottom="10dp"
+                             android:textColor="@color/black"
+                             android:textSize="15sp"
+                             android:text="@{viewModel.currentComplaintVO.subject}" />
+
+                         <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginTop="10dp"
+                             android:layout_marginBottom="10dp"
+                             android:textColor="@color/black"
+                             android:textSize="15sp"
+                             android:text="Complaint will be resolved within " />
+
+
+                         <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:gravity="center"
+                             android:textColor="@color/purple_500"
+                             android:textSize="25sp"
+                             android:textStyle="bold"
+                             app:timer="@{viewModel.currentComplaintVO}" />
+
+
+                     </LinearLayout>
+                 </androidx.cardview.widget.CardView>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/chipOptionGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/cardview_shadow_end_color"
+                    android:gravity="center"
+                    android:minHeight="650dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/complaintDetail">
+
+                    <Button
+                        android:id="@+id/betterDeal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="@drawable/bg_button"
+                        android:elevation="5dp"
+                        android:padding="10dp"
+                        android:text="GET BETTER PLAN"
+                        app:layout_constraintBottom_toTopOf="@+id/actionProfile"
+                        app:layout_constraintEnd_toEndOf="@+id/actionProfile"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <include
+                        android:id="@+id/actionProfile"
+                        layout="@layout/option_view"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        app:layout_constraintBottom_toTopOf="@+id/actionServices"
+                        app:layout_constraintEnd_toStartOf="@+id/custFeedback"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/betterDeal"
+                        bind:imageId='@{@drawable/profile_t}'
+                        bind:title='@{@string/profile}' />
+
+
+                    <include
+                        android:id="@+id/actionServices"
+                        layout="@layout/option_view"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="10dp"
+                        app:layout_constraintBottom_toTopOf="@+id/actionQuery"
+                        app:layout_constraintEnd_toStartOf="@+id/actionPlan"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/actionProfile"
+                        bind:imageId='@{@drawable/service_n}'
+                        bind:title='@{@string/services}' />
+
+                    <include
+                        android:id="@+id/actionPlan"
+                        layout="@layout/option_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:layout_constraintBottom_toTopOf="@+id/actionPayment"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/actionServices"
+                        app:layout_constraintTop_toBottomOf="@+id/custFeedback"
+                        bind:imageId='@{@drawable/plan_n}'
+                        bind:title='@{@string/plans}' />
+
+                    <include
+                        android:id="@+id/actionQuery"
+                        layout="@layout/option_view"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="10dp"
+                        app:layout_constraintBottom_toTopOf="@+id/actionConnections"
+                        app:layout_constraintEnd_toStartOf="@+id/actionPayment"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/actionServices"
+                        bind:imageId='@{@drawable/help_n}'
+                        bind:title='@{@string/query}' />
+
+                    <include
+                        android:id="@+id/actionConnections"
+                        layout="@layout/option_view"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="10dp"
+                        android:visibility="@{userResponseModel.ID_UserType == AppConst.INSTANCE.USER_TYPE_ADMIN ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/actionPayment"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/actionQuery"
+                        bind:imageId='@{@drawable/help_n}'
+                        bind:title='@{@string/newConnections}' />
+
+
+                    <include
+                        android:id="@+id/actionPayment"
+                        layout="@layout/option_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:layout_constraintBottom_toTopOf="@+id/actionAddAlert"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/actionQuery"
+                        app:layout_constraintTop_toBottomOf="@+id/actionPlan"
+                        bind:imageId='@{@drawable/payment_n}'
+                        bind:title='@{@string/payment}' />
+
+                    <include
+                        android:id="@+id/actionAddAlert"
+                        layout="@layout/option_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:visibility="@{userResponseModel.ID_UserType == AppConst.INSTANCE.USER_TYPE_ADMIN ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/actionPayment"
+                        app:layout_constraintTop_toBottomOf="@+id/actionPayment"
+                        bind:imageId='@{@drawable/notification_n}'
+                        bind:title='@{@string/addAlert}' />
+
+
+                    <include
+                        android:id="@+id/custFeedback"
+                        layout="@layout/option_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:layout_constraintBottom_toTopOf="@+id/actionPlan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/actionProfile"
+                        app:layout_constraintTop_toBottomOf="@+id/signupUser"
+                        bind:imageId='@{@drawable/feedback_n}'
+                        bind:title='@{@string/feedback}' />
+
+                    <Button
+                        android:id="@+id/signupUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="@drawable/bg_button"
+                        android:elevation="5dp"
+                        android:padding="10dp"
+                        android:text="CUSTOMERS"
+                        android:visibility="@{userResponseModel.ID_UserType == AppConst.INSTANCE.USER_TYPE_ADMIN ? View.VISIBLE : View.GONE}"
+
+                        app:layout_constraintBottom_toTopOf="@+id/custFeedback"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/betterDeal"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/bannerPager"
+                    android:layout_width="0dp"
+                    android:layout_height="229dp"
+                    android:layout_margin="10dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/dots_indicator"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/welcomeMsg" />
+
+                <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+                    android:id="@+id/dots_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:visibility="gone"
+                    app:dotsColor="@color/design_default_color_primary_dark"
+                    app:dotsCornerRadius="8dp"
+                    app:dotsSize="12dp"
+                    app:dotsSpacing="5dp"
+                    app:dotsStrokeColor="@color/design_default_color_primary"
+                    app:dotsStrokeWidth="2dp"
+                    app:layout_constraintBottom_toTopOf="@+id/chipOptionGroup"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bannerPager" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+    <data class="DashboardBinding">
+
+        <import type="android.view.View"/>
+        <import type="com.netfix.util.AppConst"/>
+
+        <variable
+            name="count"
+            type="Integer" />
+
+        <variable
+            name="viewModel"
+            type="com.netfix.ui.dashboard.DashboardViewModel" />
+
+        <variable
+            name="userResponseModel"
+            type="com.netfix.models.network.response.login.UserLoginResponseModel" />
+
+        <variable
+            name="userPlanVO"
+            type="com.netfix.models.network.dataModel.UserPlanVO" />
+
+    </data>
+</layout>
